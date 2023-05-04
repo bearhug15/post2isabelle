@@ -105,6 +105,7 @@ public class Main {
             //this.generator.generate(resource, this.fileAccess, context);
             PoSTGenerator gen = new PoSTGenerator();
             gen.beforeGenerate(resource, fileAccess, context);
+            //resource.setURI();
             gen.doGenerate(resource, fileAccess, context);
             System.out.println("Code generation finished.");
             this.printIssues(issues);

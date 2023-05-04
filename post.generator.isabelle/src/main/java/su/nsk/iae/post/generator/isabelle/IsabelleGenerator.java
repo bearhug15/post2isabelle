@@ -148,8 +148,7 @@ public class IsabelleGenerator implements IpoSTGenerator {
     int _minus_1 = (_length_1 - 1);
     String new_path = String.join("/", Arrays.<CharSequence>copyOf(uri, _minus_1));
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append(new_path);
-    _builder.append("/poST_");
+    _builder.append("poST_");
     _builder.append(this.fileName);
     _builder.append(".thy");
     fsa.generateFile(_builder.toString(), this.generateSingleFileBody());
