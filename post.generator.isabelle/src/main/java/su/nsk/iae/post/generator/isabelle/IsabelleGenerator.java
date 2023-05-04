@@ -58,25 +58,7 @@ public class IsabelleGenerator implements IpoSTGenerator {
 
   private String fileName;
 
-  /**
-   * override execute(String root, String fileName, Resource resource) {
-   * try {
-   * this.fileName = fileName
-   * val fsa = PoSTStandaloneSetup.getInjector().getInstance(JavaIoFileSystemAccess);
-   * val generatePath = root + File.separator + "isabelle" + File.separator + fileName;
-   * fsa.setOutputPath(generatePath);
-   * 
-   * model = resource.allContents.toIterable.filter(Model).get(0)
-   * beforeGenerate(resource, fsa, null);
-   * doGenerate(resource, fsa, null);
-   * afterGenerate(resource, fsa, null);
-   * return "Files generated in " + generatePath;
-   * } catch (Throwable th) {
-   * //Do nothing
-   * }
-   * return "Failure";
-   * }
-   */
+
   @Override
   public void setModel(final Model model) {
     this.globVarList.clear();
@@ -148,8 +130,7 @@ public class IsabelleGenerator implements IpoSTGenerator {
     int _minus_1 = (_length_1 - 1);
     String new_path = String.join("/", Arrays.<CharSequence>copyOf(uri, _minus_1));
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append(new_path);
-    _builder.append("/poST_");
+    _builder.append("poST_");
     _builder.append(this.fileName);
     _builder.append(".thy");
     fsa.generateFile(_builder.toString(), this.generateSingleFileBody());
@@ -167,8 +148,7 @@ public class IsabelleGenerator implements IpoSTGenerator {
     int _minus_1 = (_length_1 - 1);
     String new_path = String.join("/", Arrays.<CharSequence>copyOf(uri, _minus_1));
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append(new_path);
-    _builder.append("/poST_");
+    _builder.append("poST_");
     _builder.append(this.fileName);
     _builder.append(".thy");
     fsa.generateFile(_builder.toString(), this.generateSingleFileBody());
