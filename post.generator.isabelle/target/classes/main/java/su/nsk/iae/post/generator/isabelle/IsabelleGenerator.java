@@ -58,7 +58,6 @@ public class IsabelleGenerator implements IpoSTGenerator {
 
   private String fileName;
 
-
   @Override
   public void setModel(final Model model) {
     this.globVarList.clear();
@@ -160,7 +159,7 @@ public class IsabelleGenerator implements IpoSTGenerator {
     _builder.append(this.fileName);
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("imports \"~~/poST/poSTVM/poSTVM_alt_inductive\"");
+    _builder.append("imports \"~~/poST/poSTVM/poSTVM_inductive\"");
     _builder.newLine();
     _builder.append("begin");
     _builder.newLine();

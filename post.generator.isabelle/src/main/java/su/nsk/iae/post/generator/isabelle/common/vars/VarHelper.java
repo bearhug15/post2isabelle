@@ -540,40 +540,40 @@ public abstract class VarHelper {
     if (t != null) {
       switch (t) {
         case "INT":
-          _switchResult = "(basic_post_type.Int 0)";
+          _switchResult = "(ptype.Int 0)";
           break;
         case "SINT":
-          _switchResult = "(basic_post_type.Int 0)";
+          _switchResult = "(ptype.Int 0)";
           break;
         case "DINT":
-          _switchResult = "(basic_post_type.Int 0)";
+          _switchResult = "(ptype.Int 0)";
           break;
         case "LINT":
-          _switchResult = "(basic_post_type.Int 0)";
+          _switchResult = "(ptype.Int 0)";
           break;
         case "UINT":
-          _switchResult = "(basic_post_type.Nat 0)";
+          _switchResult = "(ptype.Nat 0)";
           break;
         case "USINT":
-          _switchResult = "(basic_post_type.Nat 0)";
+          _switchResult = "(ptype.Nat 0)";
           break;
         case "UDINT":
-          _switchResult = "(basic_post_type.Nat 0)";
+          _switchResult = "(ptype.Nat 0)";
           break;
         case "ULINT":
-          _switchResult = "(basic_post_type.Nat 0)";
+          _switchResult = "(ptype.Nat 0)";
           break;
         case "REAL":
-          _switchResult = "(basic_post_type.Real 0.0)";
+          _switchResult = "(ptype.Real 0.0)";
           break;
         case "LREAL":
-          _switchResult = "(basic_post_type.Real 0.0)";
+          _switchResult = "(ptype.Real 0.0)";
           break;
         case "TIME":
-          _switchResult = "(basic_post_type.Time (time.Time 0 0 0 0 0))";
+          _switchResult = "(ptype.Time (time.Time 0 0 0 0 0))";
           break;
         case "BOOL":
-          _switchResult = "(basic_post_type.Bool False)";
+          _switchResult = "(ptype.Bool False)";
           break;
         default:
           _switchResult = t;

@@ -2,7 +2,11 @@ package post.generator.isabelle;
 
 import org.apache.commons.cli.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.*;
 import java.util.Iterator;
 import java.util.List;
@@ -45,18 +49,26 @@ public class Main {
 		options.addOption("model",false,"Adding of isabelle model of poST language");
 		options.addOption("s",true,"Path to source post file");
 		options.addOption("o",true,"Path to files outputting");
+		String hdescription = 
+					"-s <path>  set path to .post file\n"
+				  + "-o <paht>  set destination path for result\n"
+				  + "-model 	extract .thy files of post model\n";
+		options.addOption("h",false,hdescription);
 		
 		CommandLineParser parser = new DefaultParser();
 		try {
 			CommandLine cmd = parser.parse(options, args);
 			String outputPath = FileSystems.getDefault().getPath("").toAbsolutePath().toString();
+			if (cmd.hasOption("h")) {
+				System.out.println(hdescription);
+			}
 			if (cmd.hasOption("o")) {
 				outputPath = cmd.getOptionValue("o");
 			}
 			
 			if (cmd.hasOption("model")) {
 				System.out.println("Copping model");
-				directoryCopy(outputPath);
+				modelCopy(outputPath);
 			}
 			
 			if (cmd.hasOption("s")) {
@@ -68,25 +80,32 @@ public class Main {
 		} catch (ParseException e) {
 			System.out.println("Wrong command option");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
-	private static void directoryCopy(String dest) throws IOException {
-		//JarURLConnection con = new JarURLConnection ();
-		String sourcePath = "/main/resources/isabellePoST";
-		    Files.walk(Paths.get(sourcePath))
-		      .forEach(source -> {
-		          Path destination = Paths.get(dest, source.toString()
-		            .substring(sourcePath.length()));
-		          try {
-		              Files.copy(source, destination);
-		          } catch (IOException e) {
-		              e.printStackTrace();
-		          }
-		      });
+	private static void modelCopy(String dest) throws IOException {
+		String sourceName = "/poST_Isabelle.rar";
+		InputStream stream = null;
+		OutputStream resStreamOut = null;
+		//String jarFolder;
+
+			stream = Main.class.getResourceAsStream("/src/main/resources" + sourceName);
+			if (stream == null) {
+				throw new IOException("Cannot get resource \"" + sourceName + "\" from Jar file.");
+			}
+			
+			int readBytes;
+			byte[] buffer = new byte[4096];
+			//jarFolder = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
+			resStreamOut = new FileOutputStream (dest+sourceName);
+			while ((readBytes = stream.read(buffer)) > 0) {
+                resStreamOut.write(buffer, 0, readBytes);
+            }
+			stream.close();
+			resStreamOut.close();
+ 
 	}
 	
 	protected void runGenerator (String inPath,String outPath) {
