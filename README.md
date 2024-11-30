@@ -1,4 +1,4 @@
-# post2isabelle
+# PoST to Isabelle/HOL translator.
 
 ## Overview
 
